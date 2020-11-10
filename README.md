@@ -1,6 +1,6 @@
 # Integrador final SysOne
 
-_Tomando como referencia el ejercicio integrador, incorporar en las distintas capas según corresponda, los frameworks jpa/hibernate, spring-mvc, spring-data, springboot.
+_ Tomando como referencia el ejercicio integrador, incorporar en las distintas capas según corresponda, los frameworks jpa/hibernate, spring-mvc, spring-data, springboot.
 
 Armar la siguiente estructura
 
@@ -18,7 +18,7 @@ Capa Service
 
 Capa controlador
 
-@RestController (spring)_
+@RestController (spring) _
 
 ## Comenzando 🚀
 
