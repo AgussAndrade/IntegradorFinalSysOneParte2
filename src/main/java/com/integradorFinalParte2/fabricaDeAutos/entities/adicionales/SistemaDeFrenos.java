@@ -1,53 +1,23 @@
 package com.integradorFinalParte2.fabricaDeAutos.entities.adicionales;
 
-import com.integradorFinalParte2.fabricaDeAutos.entities.autos.Auto;
+import com.integradorFinalParte2.fabricaDeAutos.dtos.adicionalDTOS.AdicionalDTO;
+import com.integradorFinalParte2.fabricaDeAutos.dtos.adicionalDTOS.AirbagDTO;
+import com.integradorFinalParte2.fabricaDeAutos.dtos.adicionalDTOS.SistemaDeFrenosDTO;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "adicional")
-public class SistemaDeFrenos implements Adicional{
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
-    @Column(name = "precio_base")
-    private double precioBase;
-    @Column(name = "tipo")
-    private String tipo;
-    @ManyToOne
-    @JoinColumn(name = "id_auto", referencedColumnName = "id")
-    private Auto auto;
+@DiscriminatorValue(value="sistema_de_frenos")
+public class SistemaDeFrenos extends Adicional{
     public SistemaDeFrenos(){
-        setTipo(this.getClass().getSimpleName());
-        precioBase = 14000;
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        setPrecioBase(14000);
     }
 
     @Override
-    public double getPrecioBase() {
-        return precioBase;
-    }
+    public AdicionalDTO toDTO() {
 
-    @Override
-    public void setPrecioBase(double precioBase) {
-        this.precioBase = precioBase;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+        AdicionalDTO adicionalDTO = new SistemaDeFrenosDTO();
+        adicionalDTO.setPrecioBase(getPrecioBase());
+        return adicionalDTO;
     }
 }

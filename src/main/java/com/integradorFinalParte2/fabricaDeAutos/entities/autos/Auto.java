@@ -2,6 +2,8 @@ package com.integradorFinalParte2.fabricaDeAutos.entities.autos;
 
 
 
+import com.integradorFinalParte2.fabricaDeAutos.dtos.adicionalDTOS.AdicionalDTO;
+import com.integradorFinalParte2.fabricaDeAutos.dtos.autoDTOS.AutoDTO;
 import com.integradorFinalParte2.fabricaDeAutos.entities.adicionales.Adicional;
 
 import javax.persistence.*;
@@ -10,10 +12,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "auto")
+@DiscriminatorColumn(name="modelo")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Auto {
     @Column(name = "precio_base")
     private double precioBase;
-    @Column(name = "precio_final")
+    @Column(name = "precio_total")
     private double precioFinal;
 
     @OneToMany(mappedBy = "auto",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
@@ -21,9 +25,9 @@ public abstract class Auto {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "modelo")
-    private String modelo;
+
 
     public Auto (){
         setAdicionales(new ArrayList<Adicional>());
@@ -64,11 +68,17 @@ public abstract class Auto {
         this.precioFinal = precioFinal;
     }
 
-    public String getModelo() {
-        return modelo;
-    }
+    public abstract AutoDTO toDTO();
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    protected AutoDTO formarAuto(AutoDTO auto){
+        List<AdicionalDTO> adicionalDTOS = new ArrayList<>();
+        for(Adicional adicional : this.getAdicionales()){
+            adicionalDTOS.add(adicional.toDTO());
+        }
+        auto.setPrecioBase(getPrecioBase());
+        auto.setAdicionales(adicionalDTOS);
+        auto.setPrecioFinal(this.getPrecioFinal());
+        return auto;
+
     }
 }
