@@ -1,6 +1,7 @@
 # Integrador final SysOne
 
-##Consigna 📬
+## Consigna 📬
+
 _Tomando como referencia el ejercicio integrador, incorporar en las distintas capas según corresponda, los frameworks jpa/hibernate, spring-mvc, spring-data, springboot._
 
 _Armar la siguiente estructura_
