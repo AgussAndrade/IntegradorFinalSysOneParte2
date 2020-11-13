@@ -30,8 +30,13 @@ public class SedanDTO implements AutoDTO{
     @Override
     public Auto toAuto() {
         Auto auto = new Sedan();
+        //Se repite codigo pero las opciones para mejorar seria pasar autoDTO a clase, pero pierdo la interfaz
+        // y ademas pierdo la opcion de que algun futuro auto de transforme de forma distinta
         for(AdicionalDTO adicional : this.adicionalesDTO){
             auto.addAdicional(adicional.ToAdicional());
+        }
+        if(getPrecioBase() != 0){
+            auto.setPrecioBase(getPrecioBase());
         }
         if(getPrecioFinal() != 0){
             auto.setPrecioFinal(getPrecioFinal());

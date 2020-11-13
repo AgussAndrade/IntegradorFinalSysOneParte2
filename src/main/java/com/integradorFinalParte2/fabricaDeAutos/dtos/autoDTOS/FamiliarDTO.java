@@ -33,6 +33,9 @@ public class FamiliarDTO implements AutoDTO{
         for(AdicionalDTO adicional : this.adicionalesDTO){
             auto.addAdicional(adicional.ToAdicional());
         }
+        if(getPrecioBase() != 0){
+            auto.setPrecioBase(getPrecioBase());
+        }
         if(getPrecioFinal() != 0){
             auto.setPrecioFinal(getPrecioFinal());
         }

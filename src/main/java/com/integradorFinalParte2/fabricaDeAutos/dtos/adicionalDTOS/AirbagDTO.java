@@ -21,6 +21,12 @@ public class AirbagDTO implements AdicionalDTO {
 
     @Override
     public Adicional ToAdicional() {
-        return new Airbag();
+        Adicional adicional = new Airbag();
+
+
+        if(getPrecioBase() != 0){
+            adicional.setPrecioBase(getPrecioBase());
+        }
+        return adicional;
     }
 }

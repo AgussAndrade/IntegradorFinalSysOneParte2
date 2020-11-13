@@ -15,7 +15,7 @@ import java.util.List;
 public class Familiar extends Auto {
     public Familiar(){
         super();
-        this.setPrecioBase(24500);
+        this.setPrecioBase(245000);
 
     }
     @Override

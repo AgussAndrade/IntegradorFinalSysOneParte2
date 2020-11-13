@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value = "/auto")
+@RequestMapping(value = "/autos")
 public class AutoController {
     @Autowired
     private AutoService autoService;

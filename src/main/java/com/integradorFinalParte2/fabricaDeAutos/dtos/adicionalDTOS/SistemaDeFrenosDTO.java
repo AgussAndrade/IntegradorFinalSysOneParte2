@@ -21,6 +21,12 @@ public class SistemaDeFrenosDTO implements AdicionalDTO{
 
     @Override
     public Adicional ToAdicional() {
-        return new SistemaDeFrenos();
+        Adicional adicional = new SistemaDeFrenos();
+
+
+        if(getPrecioBase() != 0){
+            adicional.setPrecioBase(getPrecioBase());
+        }
+        return adicional;
     }
 }

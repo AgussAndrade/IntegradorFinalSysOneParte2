@@ -6,7 +6,7 @@ import com.integradorFinalParte2.fabricaDeAutos.entities.autos.Auto;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "adicional")
+@Table(name = "Adicional")
 @DiscriminatorColumn(name="tipo")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Adicional {

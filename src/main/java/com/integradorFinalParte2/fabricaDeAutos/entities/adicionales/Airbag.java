@@ -6,7 +6,7 @@ import com.integradorFinalParte2.fabricaDeAutos.dtos.adicionalDTOS.AirbagDTO;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue(value="Airbag")
+@DiscriminatorValue(value="airbag")
 public class Airbag extends Adicional {
 
     public Airbag(){

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "auto")
+@Table(name = "Auto")
 @DiscriminatorColumn(name="modelo")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Auto {
@@ -77,7 +77,10 @@ public abstract class Auto {
         }
         auto.setPrecioBase(getPrecioBase());
         auto.setAdicionales(adicionalDTOS);
-        auto.setPrecioFinal(this.getPrecioFinal());
+        if(getPrecioFinal()!= 0) {
+            auto.setPrecioFinal(this.getPrecioFinal());
+        }
+
         return auto;
 
     }

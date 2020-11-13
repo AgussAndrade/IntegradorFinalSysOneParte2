@@ -40,14 +40,27 @@ public class AutoServiceImpl implements AutoService {
     public void modificarAuto(AutoDTO autoDTO, Integer id) {
         Auto auto  = autoDTO.toAuto();
         auto.setId(id);
-        auto.setPrecioFinal(getPrecioFinal(auto));
-        autoDAO.save(auto);
+
+        List<Adicional> adicionalesCombinados = autoDAO.findById(id).get().getAdicionales();
+
         for(Adicional adicional : auto.getAdicionales()){
             adicional.setAuto(auto);
+
+            //guardo los adicionales nuevos
             adicionalDAO.save(adicional);
-        }
+
+            //le voy agregando los nuevos a la lista de viejos
+            adicionalesCombinados.add(adicional);
+           }
+
+        auto.setAdicionales(adicionalesCombinados);
+        //le seteo el precio actual combinando los adicionales viejos y nuevos con el precio base nuevo
+        auto.setPrecioFinal(getPrecioFinal(auto));
+
+        autoDAO.save(auto);
 
     }
+
 
     @Override
     public void eliminarAuto(Integer id){

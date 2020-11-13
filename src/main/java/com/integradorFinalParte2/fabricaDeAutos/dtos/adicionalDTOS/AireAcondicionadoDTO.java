@@ -2,11 +2,6 @@ package com.integradorFinalParte2.fabricaDeAutos.dtos.adicionalDTOS;
 
 import com.integradorFinalParte2.fabricaDeAutos.entities.adicionales.Adicional;
 import com.integradorFinalParte2.fabricaDeAutos.entities.adicionales.AireAcondicionado;
-import com.integradorFinalParte2.fabricaDeAutos.entities.autos.Auto;
-
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 public class AireAcondicionadoDTO implements AdicionalDTO {
 
@@ -26,6 +21,12 @@ public class AireAcondicionadoDTO implements AdicionalDTO {
 
     @Override
     public Adicional ToAdicional() {
-        return new AireAcondicionado();
+        Adicional adicional = new AireAcondicionado();
+
+
+        if(getPrecioBase() != 0){
+            adicional.setPrecioBase(getPrecioBase());
+        }
+        return adicional;
     }
 }

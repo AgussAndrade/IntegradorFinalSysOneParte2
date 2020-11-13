@@ -21,6 +21,12 @@ public class LlantasDeAleacionDTO implements AdicionalDTO {
 
     @Override
     public Adicional ToAdicional() {
-        return new LlantasDeAleacion();
+        Adicional adicional = new LlantasDeAleacion();
+
+
+        if(getPrecioBase() != 0){
+            adicional.setPrecioBase(getPrecioBase());
+        }
+        return adicional;
     }
 }
